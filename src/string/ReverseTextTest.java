@@ -42,4 +42,41 @@ class ReverseTextTest {
         });
         assertEquals("Text is not initialized", exception.getMessage(), "Exception message does not match");
     }
+    @Test
+    void testReverseOddsNormalString() {
+        assertEquals("afcdeb", ReverseText.reverseOddText("abcdef"), "Reversing odd indices in 'abcdef' failed");
+    }
+
+    @Test
+    void testReverseOddsSingleCharacter() {
+        assertEquals("a", ReverseText.reverseOddText("a"), "Single character should remain unchanged");
+    }
+
+    @Test
+    void testReverseOddsEmptyString() {
+        assertEquals("", ReverseText.reverseOddText(""), "Empty string should return empty string");
+    }
+
+    @Test
+    void testReverseOddsPalindrome() {
+        assertEquals("madam", ReverseText.reverseOddText("madam"), "Reversing odd indices in palindrome failed");
+    }
+
+    @Test
+    void testReverseOddsWithSpaces() {
+        assertEquals("hlloo wlred", ReverseText.reverseOddText("hello world"), "Reversing odd indices in 'hello world' failed");
+    }
+
+    @Test
+    void testReverseOddsWithSpecialCharacters() {
+        assertEquals("1!3@2#", ReverseText.reverseOddText("1#3@2!"), "Reversing odd indices in special characters failed");
+    }
+
+    @Test
+    void testReverseOddsNullInput() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            ReverseText.reverseOddText(null);
+        });
+        assertEquals("Text is not initialized", exception.getMessage(), "Exception message does not match");
+    }
 }
