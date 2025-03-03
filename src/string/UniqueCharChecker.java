@@ -6,14 +6,14 @@ public class UniqueCharChecker {
             return false;
         }
 
-        boolean[] booleans = new boolean[128]; // Track seen characters
+        boolean[] booleansArray = new boolean[128]; // Track seen characters
 
         for (int idx = 0; idx < str.length(); idx++) {
             int value = str.charAt(idx);
-            if (booleans[value]){
+            if (booleansArray[value]){
                 return false;
             }
-            booleans[value] = true;
+            booleansArray[value] = true;
         }
         return true;
     }
