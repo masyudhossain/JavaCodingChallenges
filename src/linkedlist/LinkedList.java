@@ -62,12 +62,13 @@ public class LinkedList<T> { // generic linked list
         return stringJoiner.toString();
     }
 
+
     public static void main(String[] args) {
         LinkedList<String> linkedList = new LinkedList<>();
+        LinkedList<String> linkedList1 = new LinkedList<>();
         linkedList.add("s1");
         linkedList.add("s2");
         linkedList.add("s3");
         linkedList.add("s4");
-        System.out.println(linkedList.toString());
     }
 }
