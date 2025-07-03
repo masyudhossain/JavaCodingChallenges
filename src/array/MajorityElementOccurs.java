@@ -77,6 +77,7 @@ public class MajorityElementOccurs {
             result.add(candidate2);
         }
 
+        Collections.sort((result));
         return result;
     }
 
