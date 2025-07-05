@@ -33,9 +33,33 @@ public class MaxProfitOneTrans {
         return maxProfit;
     }
 
+    public static int maxProfitOptimal(int[] prices){
+        int maxProfit = 0;
+        int minPrice = Integer.MAX_VALUE;
+        int n = prices.length;
+
+        for (int i = 0; i < n; i++) {
+            if (prices[i]<minPrice)
+            {
+                minPrice = prices[i];
+            }
+            else
+            {
+                int profit = prices[i] - minPrice;
+                if (profit>maxProfit){
+                    maxProfit = profit;
+                }
+            }
+        }
+        return maxProfit;
+    }
+
     public static void main(String[] args) {
         int[] prices = {7, 10, 1, 3, 6, 9, 2};
+        int[] prices1 = { 10, 8, 6, 3, 2};
         System.out.println("Max Profit: "+maxProfitBruteForce(prices));
+        System.out.println("Max Profit: "+maxProfitOptimal(prices));
+        System.out.println("Max Profit: "+maxProfitOptimal(prices1));
     }
 }
 
