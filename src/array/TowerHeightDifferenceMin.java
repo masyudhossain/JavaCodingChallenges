@@ -11,10 +11,12 @@ For each tower, you must perform exactly one of the following operations exactly
 
 Increase the height of the tower by K
 Decrease the height of the tower by K
-Find out the minimum possible difference between the height of the shortest and tallest towers after you have modified each tower.
+Find out the minimum possible difference between the height of the shortest and tallest towers after you
+ have modified each tower.
 
 You can find a slight modification of the problem here.
-Note: It is compulsory to increase or decrease the height by K for each tower. After the operation, the resultant array should not contain any negative integers.
+Note: It is compulsory to increase or decrease the height by K for each tower.
+After the operation, the resultant array should not contain any negative integers.
 
 Examples :
 
@@ -28,21 +30,23 @@ Constraints
 1 ≤ k ≤ 107
 1 ≤ n ≤ 105
 1 ≤ arr[i] ≤ 107
+
  */
 public class TowerHeightDifferenceMin {
     public static int getMinDiff(int[] arr, int k){
         int N = arr.length;
         if (N==0) return 0;
 
-        Arrays.sort(arr); // Sorting the array
+        Arrays.sort(arr); // Sorting the array O(nlogn)
 
         int minDiff = arr[N-1] - arr[0]; // Because in accenting sorted array 1st element is smallest and last element is largest
 
-        for (int i = 0; i < N-1; i++) {
+        for (int i = 0; i < N-1; i++) { //O(n)
             int maxHeight = Math.max(arr[N-1]-k,arr[i]+k);
             int minHeight = Math.min(arr[0]+k, arr[i+1]-k);
 
-            if(minHeight<0) continue;
+            if(minHeight<0) continue; //After the operation, the resultant array should not contain any negative integers.
+
             minDiff =Math.min( minDiff,(maxHeight - minHeight));
         }
         
@@ -59,3 +63,5 @@ public class TowerHeightDifferenceMin {
             System.out.println("Output: " + getMinDiff(arr2, k2)); // Output: 11
         }
 }
+
+// Time Complexity - O(nlogn)
