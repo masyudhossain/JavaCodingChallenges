@@ -39,7 +39,7 @@ public class MaxSubArraySum {
         int currentSubArraySum = arr[0];
         int overallMaxSum = arr[0];
 
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++) {
             currentSubArraySum = Math.max(arr[i],currentSubArraySum+arr[i]);
             overallMaxSum=Math.max(overallMaxSum,currentSubArraySum);
         }
