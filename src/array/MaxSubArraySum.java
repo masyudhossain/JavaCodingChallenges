@@ -30,17 +30,25 @@ public class MaxSubArraySum {
                 currentSum= currentSum+arr[j];
                 maxSum=Math.max(maxSum,currentSum);
             }
-            System.out.println(currentSum);
+//            System.out.println(currentSum);
         }
         return maxSum;
     }
 
     public static int maxSubArraySumOptimal(int[] arr){
-        
+        int currentSubArraySum = arr[0];
+        int overallMaxSum = arr[0];
+
+        for (int i = 0; i < arr.length; i++) {
+            currentSubArraySum = Math.max(arr[i],currentSubArraySum+arr[i]);
+            overallMaxSum=Math.max(overallMaxSum,currentSubArraySum);
+        }
+        return overallMaxSum;
     }
 
     public static void main(String[] args) {
         int[] arr={2, 3, -8, 7, -1, 2, 3};
         System.out.println("Maximum sum:"+maxSubArraySumBruteForce(arr));
+        System.out.println("Maximum sum:"+maxSubArraySumOptimal(arr));
     }
 }
