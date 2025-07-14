@@ -1,3 +1,4 @@
+
 ### IntelliJ IDEA ###
 out/
 !**/src/main/**/out/
@@ -31,3 +32,4 @@ bin/
 .idea
 /lib
 /JavaCodingChallenges.iml
+practice
