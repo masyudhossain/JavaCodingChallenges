@@ -22,5 +22,6 @@ public class PalindromeCheck {
         System.out.println(isPalindrome("Madam")); // true
         System.out.println(isPalindrome("A man a plan a canal Panama")); // true
         System.out.println(isPalindrome("hello")); // false
+        System.out.println(isPalindrome(""));
     }
 }
