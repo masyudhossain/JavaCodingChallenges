@@ -30,31 +30,49 @@ public class MergeSort{
 
     // ===== Common Merge Logic =====
     private static void merge(int[] arr, int left, int mid, int right) {
+        //Sizes of two array
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
+        //initialize two temporary array of size
         int[] L = new int[n1];
         int[] R = new int[n2];
 
+        //Copy data to temporary array
         for (int i = 0; i < n1; i++)
-            L[i] = arr[left + i];
+            L[i] = arr[left + i];                           
         for (int j = 0; j < n2; j++)
             R[j] = arr[mid + 1 + j];
+
+        //merge the temporary arrays
 
         int i = 0, j = 0, k = left;
 
         while (i < n1 && j < n2) {
-            if (L[i] <= R[j])
-                arr[k++] = L[i++];
-            else
-                arr[k++] = R[j++];
+            if (L[i] <= R[j]) {
+                arr[k] = L[i];
+                i++;
+            } else {
+                arr[k] = R[j];
+                j++;
+            }
+            k++;
         }
 
-        while (i < n1)
-            arr[k++] = L[i++];
 
-        while (j < n2)
-            arr[k++] = R[j++];
+        //copy the remaining element
+        while (i < n1) {
+            arr[k] = L[i];
+            i++;
+            k++;
+        }
+
+        while (j < n2) {
+            arr[k] = R[j];
+            j++;
+            k++;
+        }
+
     }
 
     // ===== Print Utility =====
@@ -67,7 +85,7 @@ public class MergeSort{
     // ===== Main Method =====
     public static void main(String[] args) {
         int[] arr1 = { 38, 27, 43, 3, 9, 82, 10 };
-        int[] arr2 = arr1.clone(); // Clone for second method
+        int[] arr2 = {38,27,43,3}; // Clone for second method
 
         System.out.println("Original Array:");
         printArray(arr1);
@@ -77,8 +95,8 @@ public class MergeSort{
         System.out.println("Sorted with Recursive Merge Sort:");
         printArray(arr1);
 
-        iterativeMergeSort(arr2);
-        System.out.println("Sorted with Iterative Merge Sort:");
+        recursiveMergeSort(arr2,0,arr2.length-1);
+        System.out.println("Sorted with recursive Merge Sort:");
         printArray(arr2);
     }
 }
