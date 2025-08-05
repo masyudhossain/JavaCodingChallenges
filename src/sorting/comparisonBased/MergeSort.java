@@ -30,11 +30,11 @@ public class MergeSort{
 
     // ===== Common Merge Logic =====
     private static void merge(int[] arr, int left, int mid, int right) {
-        //Sizes of two array
-        int n1 = mid - left + 1;
-        int n2 = right - mid;
+        
+        int n1 = mid - left + 1;   // Size of left subarray
+        int n2 = right - mid;      // Size of right subarray
 
-        //initialize two temporary array of size
+        //initialize two temporary array of same size
         int[] L = new int[n1];
         int[] R = new int[n2];
 
@@ -44,7 +44,7 @@ public class MergeSort{
         for (int j = 0; j < n2; j++)
             R[j] = arr[mid + 1 + j];
 
-        //merge the temporary arrays
+        // Merge temp arrays back into arr[left..right]
 
         int i = 0, j = 0, k = left;
 
@@ -60,13 +60,15 @@ public class MergeSort{
         }
 
 
-        //copy the remaining element
+        // Copy remaining elements of L[], if any
         while (i < n1) {
             arr[k] = L[i];
             i++;
             k++;
         }
 
+
+        // Copy remaining elements of R[], if any
         while (j < n2) {
             arr[k] = R[j];
             j++;
