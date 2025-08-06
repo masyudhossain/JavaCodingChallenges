@@ -16,7 +16,7 @@ Output: 0
 Explanation: As all the elements of array are same, so there is no inversion count.
 Constraints:
 1 ≤ arr.size() ≤ 105
-1 ≤ arr[i] ≤ 104
+1 ≤ arr[i] ≤ 104 
  */
 public class InversionCount {
 
@@ -68,8 +68,20 @@ public class InversionCount {
         return invCount;
     }
 
+    public static int countInversionBruteforce(int[] arr){
+        int count= 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i+1; j < arr.length; j++) {
+                if (arr[i]>arr[j]){
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
     public static void main(String[] args) {
         int[] arr1 = {2, 4, 1, 3, 5};
+        System.out.println("Inversion count: " + countInversionBruteforce(arr1)); // Output: 3
         System.out.println("Inversion count: " + countInversions(arr1)); // Output: 3
 
         int[] arr2 = {2, 3, 4, 5, 6};
