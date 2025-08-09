@@ -20,52 +20,63 @@ Constraints:
  */
 public class InversionCount {
 
-    public static int countInversions(int[] arr) {
+    public static int countInversions(int[] arr){
         int[] temp = new int[arr.length];
-        return mergeSort(arr, temp, 0, arr.length - 1);
+        return mergeSortAndCount(arr,temp,0,arr.length-1);
     }
 
-    private static int mergeSort(int[] arr, int[] temp, int left, int right) {
-        int invCount = 0;
-        if (left < right) {
-            int mid = (left + right) / 2;
+    public static int mergeSortAndCount(int[] arr, int[] temp, int left, int right){
+        int inversionCount = 0;
 
-            invCount += mergeSort(arr, temp, left, mid);
-            invCount += mergeSort(arr, temp, mid + 1, right);
-            invCount += merge(arr, temp, left, mid, right);
+        if(left<right){
+            int mid = left + (right-left)/2;
+
+            //count inversion in the left half
+            int leftInversions = mergeSortAndCount(arr,temp,left,mid);
+
+            //count inversion in the right half
+            int rightInversion = mergeSortAndCount(arr,temp,mid+1,right);
+
+            //count cross inversions while merging
+            int mergeInversions = mergeAndCount(arr,temp,left,mid,right);
+
+            //total inversions for this segment
+            inversionCount = leftInversions+rightInversion+mergeInversions;
         }
-        return invCount;
+        return inversionCount;
     }
 
-    private static int merge(int[] arr, int[] temp, int left, int mid, int right) {
-        int i = left;     // index for left subarray
-        int j = mid + 1;  // index for right subarray
-        int k = left;     // index for resultant merged subarray
-        int invCount = 0;
+    //merge two sorted halves and count cross-pair inversions
+    private static int mergeAndCount(int[] arr, int[] temp, int left, int mid, int right){
+        int i= left;
+        int j=mid+1;
+        int k = left;   //pointer to the merged array
+        int inversionCount = 0;
 
-        while (i <= mid && j <= right) {
-            if (arr[i] <= arr[j]) {
+        while(i<=mid && j<=right){
+            if (arr[i]<=arr[j]){
                 temp[k++] = arr[i++];
-            } else {
+            }
+            else {
                 temp[k++] = arr[j++];
-                invCount += (mid - i + 1); // Count inversions
+                inversionCount += (mid-i+1); // all remaining elements in left aer grater
             }
         }
 
-        // Copy the remaining elements
-        while (i <= mid) {
+        //copy the remaining element from left half(int any
+        while(i<=mid){
             temp[k++] = arr[i++];
         }
-        while (j <= right) {
+
+        //copy remaining element from right half
+        while(j<=right){
             temp[k++] = arr[j++];
         }
-
-        // Copy back to original array
-        for (i = left; i <= right; i++) {
-            arr[i] = temp[i];
+        //copy of sorted and merged elements back to original array
+        for (i=left;i<=right;i++){
+            arr[i]=temp[i];
         }
-
-        return invCount;
+        return inversionCount;
     }
 
     public static int countInversionBruteforce(int[] arr){
